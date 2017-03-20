@@ -1,0 +1,57 @@
+[
+  {
+    "StockId": "1",
+    "StockName": "NEKASH",
+    "LastPrice": "11.15",
+    "BuyingPrice": "11.15",
+    "SalesPrice": "11.16",
+    "DailyLow": "10.08",
+    "DailyHigh": "11.41",
+    "DailyChange": "10.62",
+    "DailyCapacity": "214.6925"
+  },
+  {
+    "StockId": "2",
+    "StockName": "KHYAO",
+    "LastPrice": "14.15",
+    "BuyingPrice": "14.15",
+    "SalesPrice": "14.16",
+    "DailyLow": "14.08",
+    "DailyHigh": "14.41",
+    "DailyChange": "10.62",
+    "DailyCapacity": "614.6925"
+  },
+  {
+    "StockId": "3",
+    "StockName": "HENER",
+    "LastPrice": "35.15",
+    "BuyingPrice": "35.15",
+    "SalesPrice": "35.16",
+    "DailyLow": "35.08",
+    "DailyHigh": "35.41",
+    "DailyChange": "-0.40",
+    "DailyCapacity": "4.7240"
+  },
+  {
+    "StockId": "4",
+    "StockName": "LETKIM",
+    "LastPrice": "4.81",
+    "BuyingPrice": "4.81",
+    "SalesPrice": "4.82",
+    "DailyLow": "4.79",
+    "DailyHigh": "4.94",
+    "DailyChange": "-2.04",
+    "DailyCapacity": "135.5300"
+  },
+  {
+    "StockId": "5",
+    "StockName": "ESELS",
+    "LastPrice": "17.15",
+    "BuyingPrice": "17.15",
+    "SalesPrice": "17.16",
+    "DailyLow": "16.57",
+    "DailyHigh": "17.52",
+    "DailyChange": "-1.54",
+    "DailyCapacity": "257.7250"
+  }
+]

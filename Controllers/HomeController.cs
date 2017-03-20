@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using StockExchange.Service;
 
 namespace StockExchange.Controllers
 {
@@ -10,7 +7,10 @@ namespace StockExchange.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var service = new DataService();
+            var list = service.GetData();
+
+            return View(list);
         }
 
         public IActionResult About()
