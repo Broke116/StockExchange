@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,13 @@ namespace StockExchange.API
             var list = service.GetData();
             name = name.Replace("-", " ");
             return list.Where(l => l.StockName == name).FirstOrDefault();
+        }
+
+        [HttpGet("{stockId:int}")]
+        public StockModel Get(int stockId)
+        {
+            var list = service.GetData();
+            return list.Where(l => l.StockId == stockId).FirstOrDefault();
         }
     }
 }
