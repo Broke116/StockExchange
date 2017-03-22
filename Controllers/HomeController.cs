@@ -9,6 +9,7 @@ namespace StockExchange.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             using (var client = new HttpClient())
@@ -20,10 +21,38 @@ namespace StockExchange.Controllers
             }            
         }
 
+        [Route("stock/{stockId}")]
+        public async Task<StockModel> Index(int stockId){
+            using(var client = new HttpClient())
+            {
+                var response = await client.GetAsync("http://localhost:5000/api/stockapi/"+stockId);
+                var data = JsonConvert.DeserializeObject<StockModel>(
+                response.Content.ReadAsStringAsync().Result);
+                return data;
+            }            
+        }
+
+        [HttpPost]
+        public IActionResult Index(StockModel model)
+        {
+            var json = System.IO.File.ReadAllText("Models/stocks.json");
+            dynamic jsonObj = JsonConvert.DeserializeObject(json);  
+            
+            foreach(var val in jsonObj){
+                if(val.StockId == model.StockId){
+                    val.StockName = model.StockName;
+                }
+            }
+            var output = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
+            System.IO.File.WriteAllText("Models/stocks.json", output);
+
+            return RedirectToAction("Index", "Home");
+        }
+
         [Route("show/{title}")]
         public async Task<ActionResult> Index(string title)
         {
-            using (HttpClient client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 var response = await client.GetAsync("http://localhost:5000/api/stockapi/"+title);
                 var data = JsonConvert.DeserializeObject<StockModel>(
