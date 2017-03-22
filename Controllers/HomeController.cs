@@ -12,6 +12,7 @@ namespace StockExchange.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            // read all json file contents and put them into the table
             using (var client = new HttpClient())
             {
                 var response = await client.GetAsync("http://localhost:5000/api/stockapi");
@@ -23,6 +24,7 @@ namespace StockExchange.Controllers
 
         [Route("stock/{stockId}")]
         public async Task<StockModel> Index(int stockId){
+            // get data with given stockId
             using(var client = new HttpClient())
             {
                 var response = await client.GetAsync("http://localhost:5000/api/stockapi/"+stockId);
@@ -35,16 +37,17 @@ namespace StockExchange.Controllers
         [HttpPost]
         public IActionResult Index(StockModel model)
         {
+            // read files from json file and change specified stock value by id
             var json = System.IO.File.ReadAllText("Models/stocks.json");
-            dynamic jsonObj = JsonConvert.DeserializeObject(json);  
+            dynamic jsonObj = JsonConvert.DeserializeObject(json); // first make deserialize it
             
             foreach(var val in jsonObj){
                 if(val.StockId == model.StockId){
                     val.StockName = model.StockName;
                 }
             }
-            var output = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
-            System.IO.File.WriteAllText("Models/stocks.json", output);
+            var output = JsonConvert.SerializeObject(jsonObj, Formatting.Indented); // finally serialize again
+            System.IO.File.WriteAllText("Models/stocks.json", output); // write final values in to the stocks.json
 
             return RedirectToAction("Index", "Home");
         }
@@ -52,6 +55,7 @@ namespace StockExchange.Controllers
         [Route("show/{title}")]
         public async Task<ActionResult> Index(string title)
         {
+            // get data with specified title value
             using (var client = new HttpClient())
             {
                 var response = await client.GetAsync("http://localhost:5000/api/stockapi/"+title);
